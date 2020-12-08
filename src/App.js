@@ -34,7 +34,7 @@ class App extends React.Component {
     render () {
       const { selectedVideo, videos } = this.state;
       return(
-        <div style={{ padding: '2rem 6rem' }}>
+        <div className={test1div} style={{ padding: '2rem 6rem' }}>
           <Grid justify="center" container spacing={10}>
             <Grid item xs={12}>
               <Grid container spacing={10}>
