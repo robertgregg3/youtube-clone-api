@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { SearchBar, VideoDetails, VideoList } from './components';
 import youtube from './api/youtube';
+import './components/myStyles.css';
 
 class App extends React.Component {
   state = {
@@ -33,8 +34,8 @@ class App extends React.Component {
     render () {
       const { selectedVideo, videos } = this.state;
       return(
-        <div style={{ padding: '2rem 5rem' }}>
-          <Grid justify="center" container spacing={10}>
+        <div className={test1div} style={{ padding: '2rem 5rem' }}>
+          <Grid className={test2grid} justify="center" container spacing={10}>
             <Grid item xs={12}>
               <Grid container spacing={10}>
                 <Grid item xs={12}>
