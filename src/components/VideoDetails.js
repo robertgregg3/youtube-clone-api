@@ -6,7 +6,6 @@ const VideoDetails = ({ video }) => {
     if(!video) 
         return <div style={{ padding: '3rem' }}>Loading</div>
 
-    console.log(video)
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`
 
     return (
