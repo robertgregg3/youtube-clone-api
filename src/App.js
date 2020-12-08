@@ -21,7 +21,7 @@ class App extends React.Component {
     const response = await youtube.get('search', { 
       params: {
         part: 'snippet',
-        maxResults: 5,
+        maxResults: 4,
         key: 'AIzaSyBHMLsxYDrw5AZxT6twA9K9xrEo9IsapQ8', 
         q: searchTerm, 
       }
@@ -33,7 +33,7 @@ class App extends React.Component {
     render () {
       const { selectedVideo, videos } = this.state;
       return(
-        <div style={{ padding: '5rem' }}>
+        <div style={{ padding: '2rem 5rem' }}>
           <Grid justify="center" container spacing={10}>
             <Grid item xs={12}>
               <Grid container spacing={10}>
