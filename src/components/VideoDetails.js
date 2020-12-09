@@ -3,6 +3,8 @@ import React from 'react';
 import { Paper, Typography } from '@material-ui/core';
 
 const VideoDetails = ({ video }) => {
+    console.log(video)
+
     if(!video) 
         return <div style={{ padding: '3rem' }}>Loading</div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import { SearchBar, VideoDetails, VideoList } from './components';
 import youtube from './api/youtube';
+import './components/myStyles.css';
 import './components/myStyles.css';
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.handleSubmit('Funny Pet Videos') 
+    this.handleSubmit('Funny Dog Videos') 
   }
 
   onVideoSelect = (video) => {
@@ -22,7 +22,7 @@ class App extends React.Component {
     const response = await youtube.get('search', { 
       params: {
         part: 'snippet',
-        maxResults: 4,
+        maxResults: 5,
         key: 'AIzaSyBHMLsxYDrw5AZxT6twA9K9xrEo9IsapQ8', 
         q: searchTerm, 
       }
@@ -34,22 +34,16 @@ class App extends React.Component {
     render () {
       const { selectedVideo, videos } = this.state;
       return(
-        <div testdive1 style={{ padding: '2rem 5rem' }}>
-          <Grid justify="center" container spacing={10}>
-            <Grid item xs={12}>
-              <Grid container spacing={10}>
-                <Grid item xs={12}>
-                  <SearchBar onFormSubmit={this.handleSubmit} />
-                </Grid>
-                <Grid item xs={8}>
-                  <VideoDetails video={selectedVideo} />
-                </Grid>
-                <Grid item xs={4}>
-                  <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+        <div className="youtube-container">
+          <div className="youtube-searchbar">
+            <SearchBar onFormSubmit={this.handleSubmit} />
+          </div>
+          <div className="youtube-video-details">
+            <VideoDetails video={selectedVideo} />
+          </div>
+          <div className="youtube-video-items">
+            <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+          </div>
         </div>
       )
     }
