@@ -1,24 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchBar, VideoDetails, VideoList } from './components';
 import youtube from './api/youtube';
 import './components/myStyles.css';
 import './components/myStyles.css';
 
-class App extends React.Component {
-  state = {
-    videos: [],
-    selectedVideo: null,
-  }
+const App = () => {
+  const [ videos, setVideos ] = useState([]);
+  const [ selectedVideo, setSelectedVideo ] = useState(null);
 
-  componentDidMount() {
-    this.handleSubmit('Funny Dog Videos') 
-  }
-
-  onVideoSelect = (video) => {
-    this.setState({ selectedVideo: video });
-  }
-
-  handleSubmit = async (searchTerm) => {
+  const handleSubmit = async (searchTerm) => {
     const response = await youtube.get('search', { 
       params: {
         part: 'snippet',
@@ -28,25 +18,24 @@ class App extends React.Component {
       }
     });
 
-  this.setState({ videos: response.data.items, selectedVideo: response.data.items[0] });
+    setVideos(response.data.items)
+    setSelectedVideo(response.data.items[0]);
 
   }
-    render () {
-      const { selectedVideo, videos } = this.state;
-      return(
-        <div className="youtube-container">
-          <div className="youtube-searchbar">
-            <SearchBar onFormSubmit={this.handleSubmit} />
-          </div>
-          <div className="youtube-video-details">
-            <VideoDetails video={selectedVideo} />
-          </div>
-          <div className="youtube-video-items">
-            <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
-          </div>
-        </div>
-      )
-    }
+
+  return (
+    <div className="youtube-container">
+      <div className="youtube-searchbar">
+        <SearchBar onFormSubmit={handleSubmit} />
+      </div>
+      <div className="youtube-video-details">
+        <VideoDetails video={selectedVideo} />
+      </div>
+      <div className="youtube-video-items">
+        <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+      </div>
+    </div>
+  )
 }
 
 export default App;
